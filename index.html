@@ -1,0 +1,83 @@
+<!doctype html>
+
+<html>
+
+<head>
+	<title>Joe's Hotdogs</title>
+
+	<style type="text/css">
+		div,p {
+			font-size: 1.25em;
+		}
+		h2 {
+			font-size: 2em;
+		}
+	</style>
+</head>
+
+<body>
+	<script type="text/javascript">
+		// Prompt for each of the three items
+		num_hotdogs = prompt("How many hotdogs do you want?");
+		num_hotdogs = Math.round(num_hotdogs);
+		if (num_hotdogs < 0)
+			num_hotdogs = 0;
+		cost_hotdogs = Math.round((num_hotdogs * 3.25) * 100) / 100;
+
+		num_fries = prompt("How many orders of fries do you want?");
+		num_fries = Math.round(num_fries);
+		if (num_fries < 0)
+			num_fries = 0;
+		cost_fries = Math.round((num_fries * 2.00) * 100) / 100;
+
+		num_sodas = prompt("How many sodas do you want?");
+		num_sodas = Math.round(num_sodas);
+		if (num_sodas < 0)
+			num_sodas = 0;
+		cost_sodas = Math.round((num_sodas * 1.50) * 100) / 100;
+
+
+		// Calculate and round subtotal
+		subtotal = cost_hotdogs + cost_fries + cost_sodas;
+		subtotal = Math.round(subtotal * 100) / 100;
+
+		// Calculate and round discount
+		discount = 0;
+		if (subtotal >= 20)
+			discount = -.1 * subtotal;
+		discount = Math.round(discount * 100) / 100;
+
+		// Calculate and round tax
+		tax = 0.0625 * (subtotal + discount);
+		tax = Math.round(tax * 100) / 100;
+
+		// Sum up and round the order total
+		total = subtotal + discount + tax;
+		total = Math.round(total * 100) / 100;
+
+
+		// Print order details
+		document.write("<h2>Your Order</h2>");
+		document.write("<div><i>Items</i></div>");
+
+		if (num_hotdogs > 0)
+			document.write("<div>" + num_hotdogs + " Hotdogs: $" + cost_hotdogs.toFixed(2) + "</div>");
+		if (num_fries > 0)
+			document.write("<div>" + num_fries + " Fries: $" + cost_fries.toFixed(2) + "</div>");
+		if (num_sodas > 0)
+			document.write("<div>" + num_sodas + " Sodas: $" + cost_sodas.toFixed(2) + "</div>");
+
+		if (discount < 0)
+			document.write("<br /><div>You qualified for Joe's special 10% off discount!</div>");
+
+		document.write("<br /><div><i>Subtotal</i>: $" + subtotal.toFixed(2) + "</div>");
+		if (discount < 0)
+			document.write("<div><i>Discount</i>: -$" + (-1 * discount).toFixed(2) + "</div>");
+		document.write("<div><i>Tax</i>: $" + tax.toFixed(2) + "</div>");
+
+		document.write("<p><b>Total:</b> $" + total.toFixed(2) + "</p>");
+	</script>
+
+</body>
+
+</html>
